@@ -70,6 +70,11 @@ class Danmaku {
     this.itemsObj.push(new Item('', "4:0", 200, this.height - 50*6, 40, 40));
     this.itemsObj.push(new Item('', "0:1", 300, this.height - 250, 50, 70, false));
 
+    this.player = new Player('', 0, 350, 40, 55);
+
+    this.itemsObj.push(this.player);
+    
+
     //console.log(this.groundObj)
   }
 
@@ -87,6 +92,8 @@ class Danmaku {
     this.itemsObj.forEach((ele) => {
       this.addLayer(ele, frame)
     });
+
+    this.player.checkCollision(this.groundObj)
     
     this.ctx.drawLayers();
   }

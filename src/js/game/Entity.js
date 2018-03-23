@@ -12,6 +12,8 @@ class Entity{
       height: obj.height || 0,
       realWidth:  obj.realWidth   || 0,
       realHeight: obj.realHeight  || 0,
+
+      
     }
 
     // BINDING
@@ -24,7 +26,11 @@ class Entity{
 
   click(){
     // overloading
-    console.log(this.x);
+    console.log(this.y);
+  }
+
+  checkCollision(){
+    
   }
 
   /*

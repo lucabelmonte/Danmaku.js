@@ -73,15 +73,6 @@
       "y": 100,
       "width": 40,
       "height": 40
-    },
-    {
-      "type": "Ground",
-      "icon": "0:3",
-      "dimension": "1:1",
-      "x": 0,
-      "y": 0,
-      "width": 50,
-      "height": 50
     }
   ] 
 }
