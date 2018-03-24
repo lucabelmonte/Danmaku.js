@@ -60,17 +60,20 @@ class Danmaku {
       width:  this.width,
       height: this.height,
       
-    }) ;
+    });
 
     this.loadMap();
 
   
     this.itemsObj.push(new Coin('', 30, 100, this.height - 50*6, 30, 30));
+    this.itemsObj.push(new Coin('', 20, 400, this.height - 50*6, 30, 30));
+    
+
 
     this.itemsObj.push(new Item('', "4:0", 200, this.height - 50*6, 40, 40));
     this.itemsObj.push(new Item('', "0:1", 300, this.height - 250, 50, 70, false));
 
-    this.player = new Player('', 0, 350, 40, 55);
+    this.player = new Player('', 200, 0, 40, 55);
 
     this.itemsObj.push(this.player);
     
@@ -93,7 +96,8 @@ class Danmaku {
       this.addLayer(ele, frame)
     });
 
-    this.player.checkCollision(this.groundObj)
+    //this.player.checkCollision(this.groundObj)
+    this.player.attachedToGround(this.groundObj)
     
     this.ctx.drawLayers();
   }
@@ -117,17 +121,6 @@ class Danmaku {
     }) ;
   }
 
-  loadMap(){
-    const source = '/json/';
-    $.get(source+this.map, (data) => {
-      this.backGround = data.background;
-      const d = data.Objects;
-      d.forEach((obj) => {
-        this.groundObj = this.groundObj.concat(this.createElement(obj));
-      });
-    });
-  }
-
   loadBackGround() {
     this.ctx.addLayer({
       type: 'image',
@@ -137,6 +130,18 @@ class Danmaku {
       width:  this.width,
       height: this.height,
       
+    });
+  }
+
+  loadMap(){
+    const source = '/json/';
+    $.get(source+this.map, (data) => {
+      this.backGround = data.background;
+      const layer1 = data.Layer1;
+      const layer2 = data.Layer2;
+      layer1.forEach((obj) => {
+        this.groundObj = this.groundObj.concat(this.createElement(obj));
+      });
     });
   }
 
@@ -161,6 +166,17 @@ class Danmaku {
               obj.width,
               obj.height
             ));
+            break;
+
+          case 'Coin':
+            myArray.push(new Coin(
+              'Coin'+i+j,
+              obj.velocity,
+              obj.x + obj.width * j, 
+              obj.y + obj.height * i,
+              obj.width,
+              obj.height
+            ))
             break;
         }
 

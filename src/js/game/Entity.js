@@ -13,7 +13,7 @@ class Entity{
       realWidth:  obj.realWidth   || 0,
       realHeight: obj.realHeight  || 0,
 
-      
+      solid: obj.solid || false
     }
 
     // BINDING
@@ -26,7 +26,7 @@ class Entity{
 
   click(){
     // overloading
-    console.log(this.y);
+    alert(this.solid)
   }
 
   checkCollision(){
@@ -92,6 +92,14 @@ class Entity{
 
   set height(h){
     this._info.height = h;
+  }
+
+  get solid() {
+    return this._info.solid;
+  }
+
+  set solid(x) {
+    this._info.solid = x == true;
   }
 
   // --

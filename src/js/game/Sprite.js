@@ -11,7 +11,8 @@ class Sprite extends Entity {
       width : obj.width,
       height: obj.height,
       realWidth: obj.realWidth,
-      realHeight: obj.realHeight
+      realHeight: obj.realHeight,
+      solid: obj.solid
     });
 
     this._sprite_animation = {

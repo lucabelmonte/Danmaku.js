@@ -8,6 +8,8 @@ class Ground extends Sprite {
       img: '/img/sprites/spritesheet_ground.png',
       realWidth: 128, realHeight: 128,
 
+      solid: true,
+
 
       offSetX: 128, offSetY: 128,
       nx, ny

@@ -1,6 +1,6 @@
 {
-  "background": "blue_grass.png",
-  "Objects":
+  "background": "blue_desert.png",
+  "Layer1":
   [
     {
       "type": "Ground",
@@ -24,7 +24,7 @@
       "type": "Ground",
       "icon": "0:2",
       "dimension": "1:1",
-      "x": 200,
+      "x": 210,
       "y": 200,
       "width": 40,
       "height": 40
@@ -42,7 +42,7 @@
       "type": "Ground",
       "icon": "0:0",
       "dimension": "1:1",
-      "x": 500,
+      "x": 450,
       "y": 200,
       "width": 40,
       "height": 40
@@ -60,7 +60,7 @@
       "type": "Ground",
       "icon": "0:1",
       "dimension": "3:1",
-      "x": 550,
+      "x": 530,
       "y": 100,
       "width": 40,
       "height": 40
@@ -69,10 +69,41 @@
       "type": "Ground",
       "icon": "0:0",
       "dimension": "1:1",
-      "x": 700,
+      "x": 650,
       "y": 100,
       "width": 40,
       "height": 40
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 300,
+      "y": 300,
+      "width": 30,
+      "height": 30,
+      "velocity": 20
+    }, 
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 500,
+      "y": 300,
+      "width": 30,
+      "height": 30,
+      "velocity": 15
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 500,
+      "y": 250,
+      "width": 30,
+      "height": 30,
+      "velocity": 15
     }
-  ] 
+  ],
+  "Layer2":
+  [
+
+  ]
 }

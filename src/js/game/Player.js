@@ -16,11 +16,23 @@ class Player extends Sprite {
 
     this.direction = 0;
 
+    this.isAttached = false;
+
     this.dx = 0;
     this.dy = 5;
 
     this.directionSprite = [
-      {}, {}, {}, {}, {}
+      {
+
+      }, {
+
+      }, {
+
+      }, {
+
+      }, {
+
+      }
     ];
 
     
@@ -40,7 +52,6 @@ class Player extends Sprite {
         this.y < ele.y + ele.height &&
         this.height + this.y > ele.y) {
         
-        console.log('collision detection!');
         if(this.dy > 0){
           if(this.y < ele.y)
           this.y = ele.y - this.height;
@@ -48,10 +59,22 @@ class Player extends Sprite {
         return;
       }
     });
+  }
 
+  attachedToGround(Layer1){
+    let temp = false;
+    Layer1.forEach(ele => {
+      if(ele.solid &&
+        Math.abs(ele.x - this.x) < (this.width - 5) &&
+        Math.abs((this.y + this.height) - ele.y) < 5
+      ) {
+        temp = true;
+        
+        return;
+      }
+    });
 
-
-    
+    this.attached = temp;
   }
 
   keyPress(e){
@@ -96,6 +119,10 @@ class Player extends Sprite {
   }
 
   animation(){
+    if(!this.attached) this.dy = 5;
+    else this.dy = 0;
+
+
     this.x += this.dx;
     this.y += this.dy;
 
@@ -104,5 +131,14 @@ class Player extends Sprite {
       sx: super.offSetX,
       sy: super.offSetY
     }
+  }
+
+
+  get attached() {
+    return this.isAttached;
+  }
+
+  set attached(x) {
+    this.isAttached = x == true;
   }
 }
