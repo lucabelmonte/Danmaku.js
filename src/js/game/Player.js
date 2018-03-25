@@ -1,46 +1,46 @@
 class Player extends Sprite {
   constructor(id, x, y, width, height){
+    
     const type = '0:0';
     const nx = parseXY(type)[0];
     const ny = parseXY(type)[1];
     super({
       name: 'Player' + id, 
       x, y, width, height,
-      img: '/img/sprites/vector_characters.png',
-      realWidth: 80, realHeight: 110,
+      img: '/img/sprites/Player/p1_spritesheet.png',
+      realWidth: 74, realHeight: 90,
 
 
-      offSetX: 80, offSetY: 110,
+      offSetX: 74, offSetY: 90,
       nx, ny
     });
+
+    
 
     this.direction = 0;
 
     this.isAttached = false;
 
+
     this.dx = 0;
-    this.dy = 5;
+    this.dy = 6;
 
-    this.directionSprite = [
-      {
+    this.jump = {
+      status: false, 
+      y: this.y
+    }
 
-      }, {
+    this.spritekey = {
+      jump: "6:2"
+    }
 
-      }, {
 
-      }, {
-
-      }, {
-
-      }
-    ];
-
-    
+    this.animation = this.animation.bind(this);
 
     this.keyPress = this.keyPress.bind(this);
     this.keyUp = this.keyUp.bind(this);
 
-    window.addEventListener('keypress', this.keyPress);
+    window.addEventListener('keydown', this.keyPress);
     window.addEventListener('keyup', this.keyUp);
   }
 
@@ -55,7 +55,10 @@ class Player extends Sprite {
         if(this.dy > 0){
           if(this.y < ele.y)
           this.y = ele.y - this.height;
-        } 
+        } else {
+          window.removeEventListener('keydown', this.keyPress);
+          this.dy = 6;
+        }
         return;
       }
     });
@@ -66,8 +69,9 @@ class Player extends Sprite {
     Layer1.forEach(ele => {
       if(ele.solid &&
         Math.abs(ele.x - this.x) < (this.width - 5) &&
-        Math.abs((this.y + this.height) - ele.y) < 5
+        Math.abs((this.y + this.height) - ele.y) < 4
       ) {
+        console.log(this.y, ele.y - this.height);
         temp = true;
         
         return;
@@ -79,17 +83,25 @@ class Player extends Sprite {
 
   keyPress(e){
     const key = e.key;
+    console.log(key);
     switch(key){
-      case 'd':
+      case 'd': case 'ArrowRight':
         this.dx = 5;
         
         break;
 
-      case 'a':
+      case 'a': case 'ArrowLeft':
         this.dx = -5;
         break;
       case ' ':
-        this.dy = -5;
+        if(this.attached){
+          super.frameY = 1;
+          super.frameX = 6;
+          this.dy = -6;
+          this.isJumping = true;
+          this.jump.y = this.y - (60 + this.height);
+        }
+          
         break;
       case 'w':
       break;
@@ -101,16 +113,16 @@ class Player extends Sprite {
   keyUp(e){
     const key = e.key;
     switch(key){
-      case 'd':
+      case 'd': case 'ArrowRight':
         this.dx = 0;
-        
         break;
 
-      case 'a':
+      case 'a': case 'ArrowLeft':
         this.dx = 0;
         break;
       case ' ':
-        this.dy = 5;
+        //window.addEventListener('keydown', this.keyPress);
+        //this.dy = 5;
         break;
       case 'w':
       break;
@@ -118,9 +130,32 @@ class Player extends Sprite {
     }
   }
 
+  jump() {
+
+  } 
+
   animation(){
-    if(!this.attached) this.dy = 5;
-    else this.dy = 0;
+    if(!this.attached && this.isJumping == false) {
+      super.frameY = 0;
+      super.frameX = 6;
+      this.dy = 7;
+    }
+    else {
+      if(!this.isJumping) this.dy = 0;
+      else {
+        if(this.jump.y > this.y) {
+          super.frameY = 0;
+          super.frameX = 6;
+          this.dy = 7;
+          this.isJumping = false;
+        }
+      }
+    }
+
+    if(this.dy == 0) {
+      super.frameY = 0;
+      super.frameX = 0;
+    }
 
 
     this.x += this.dx;
@@ -140,5 +175,13 @@ class Player extends Sprite {
 
   set attached(x) {
     this.isAttached = x == true;
+  }
+
+  get isJumping() {
+    return this.jump.status;
+  }
+
+  set isJumping(x) {
+    this.jump.status = x == true;
   }
 }

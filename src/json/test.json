@@ -49,6 +49,15 @@
     },
     {
       "type": "Ground",
+      "icon": "0:0",
+      "dimension": "1:1",
+      "x": 450,
+      "y": 300,
+      "width": 40,
+      "height": 40
+    },
+    {
+      "type": "Ground",
       "icon": "0:2",
       "dimension": "1:1",
       "x": 500,
@@ -82,7 +91,11 @@
       "width": 30,
       "height": 30,
       "velocity": 20
-    }, 
+    }
+    
+  ],
+  "Layer2":
+  [
     {
       "type": "Coin",
       "dimension": "1:1",
@@ -101,9 +114,5 @@
       "height": 30,
       "velocity": 15
     }
-  ],
-  "Layer2":
-  [
-
   ]
 }

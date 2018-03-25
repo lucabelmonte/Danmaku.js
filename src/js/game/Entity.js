@@ -26,7 +26,7 @@ class Entity{
 
   click(){
     // overloading
-    alert(this.solid)
+    //alert(this.solid)
   }
 
   checkCollision(){

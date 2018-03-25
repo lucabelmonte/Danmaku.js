@@ -65,13 +65,13 @@ class Danmaku {
     this.loadMap();
 
   
-    this.itemsObj.push(new Coin('', 30, 100, this.height - 50*6, 30, 30));
-    this.itemsObj.push(new Coin('', 20, 400, this.height - 50*6, 30, 30));
+    this.itemsObj.push(new Coin('', 30, 100, this.height - 50*6, 20, 20));
+    this.itemsObj.push(new Coin('', 20, 400, this.height - 50*6, 20, 20));
     
 
 
-    this.itemsObj.push(new Item('', "4:0", 200, this.height - 50*6, 40, 40));
-    this.itemsObj.push(new Item('', "0:1", 300, this.height - 250, 50, 70, false));
+    // this.itemsObj.push(new Item('', "5:0", 200, this.height - 50*6, 40, 40));
+    // this.itemsObj.push(new Item('', "3:1", 300, this.height - 250, 50, 70, false));
 
     this.player = new Player('', 200, 0, 40, 55);
 
@@ -141,6 +141,10 @@ class Danmaku {
       const layer2 = data.Layer2;
       layer1.forEach((obj) => {
         this.groundObj = this.groundObj.concat(this.createElement(obj));
+      });
+
+      layer2.forEach((obj) => {
+        this.itemsObj = this.itemsObj.concat(this.createElement(obj));
       });
     });
   }
