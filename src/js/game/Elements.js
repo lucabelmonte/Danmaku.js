@@ -95,3 +95,21 @@ class Item extends Sprite {
     }
   }
 }
+
+class Tiles extends Sprite {
+  constructor(id, type, x, y, width, height){
+    const nx = parseXY(type)[0];
+    const ny = parseXY(type)[1];
+
+    super({
+      name: 'Tiles' + id, 
+      x, y, width, height,
+      img: '/img/sprites/spritesheet_tiles.png',
+      realWidth: 128, realHeight: 128,
+
+
+      offSetX: 128, offSetY: 128,
+      nx, ny
+    });
+  }
+}

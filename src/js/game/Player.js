@@ -58,12 +58,17 @@ class Player extends Sprite {
         this.x + this.width > ele.x &&
         this.y < ele.y + ele.height &&
         this.height + this.y > ele.y) {
-        if(this.isJumping){
-          this.isJumping = false;
-          this.dx = 0;
-        }
+          if(Math.abs((ele.y + ele.height) - this.y) <= 40 && Math.abs((ele.x - this.x) <  this.width)){
+            if(this.isJumping)
+              this.isJumping = false;
+          } else {
+
+          }
+        
+          //this.dx = 0;
+        
       }
-    });
+    })
   }
 
   attachedToGround(Layer1){

@@ -32,6 +32,13 @@
     },
     {
       "type": "Ground",
+      "icon": "0:1",
+      "dimension": "5:1",
+      "x": 650,
+      "y": 400
+    },
+    {
+      "type": "Ground",
       "icon": "0:0",
       "dimension": "1:1",
       "x": 450,
@@ -69,20 +76,39 @@
   ],
   "Layer2":
   [
+    
     {
-      "type": "Coin",
+      "type": "Tiles",
       "dimension": "1:1",
-      "x": 500,
-      "y": 300,
-      "width": 30,
-      "height": 30,
-      "velocity": 15
+      "icon": "3:14",
+      "x": 200,
+      "y": 471,
+      "width": 50,
+      "height": 50
+    },
+    {
+      "type": "Tiles",
+      "dimension": "1:1",
+      "icon": "3:14",
+      "x": 700,
+      "y": 471,
+      "width": 50,
+      "height": 50
+    },
+    {
+      "type": "Tiles",
+      "dimension": "1:1",
+      "icon": "2:1",
+      "x": 100,
+      "y": 471,
+      "width": 50,
+      "height": 50
     },
     {
       "type": "Coin",
       "dimension": "1:1",
       "x": 500,
-      "y": 250,
+      "y": 300,
       "width": 30,
       "height": 30,
       "velocity": 15

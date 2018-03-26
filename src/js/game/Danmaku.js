@@ -85,7 +85,7 @@ class Danmaku {
 
     this.itemsObj.push(new Heart('', 0, 0, 0, this.player));
 
-    this.itemsObj.push(this.player);
+    //this.itemsObj.push(this.player);
     
 
     //console.log(this.groundObj)
@@ -106,6 +106,8 @@ class Danmaku {
     this.itemsObj.forEach((ele) => {
       this.addLayer(ele, frame)
     });
+
+    this.addLayer(this.player, frame);
 
     this.player.checkCollision(this.groundObj)
     this.player.attachedToGround(this.groundObj)
@@ -169,6 +171,7 @@ class Danmaku {
 
     let myArray = [];
 
+
     for(let i = 0; i < ny; i++){
       for(let j = 0; j < nx; j++){
         switch(objectType){
@@ -187,6 +190,7 @@ class Danmaku {
             break;
 
           case 'Coin':
+          
             myArray.push(new Coin(
               'Coin'+i+j,
               obj.velocity,
@@ -195,6 +199,32 @@ class Danmaku {
               obj.width,
               obj.height
             ))
+            break;
+
+
+          case 'Item':
+            myArray.push(new Item(
+            'Item'+i+j,
+            obj.icon,
+            obj.x + obj.width * j, 
+            obj.y + obj.height * i,
+            obj.width,
+            obj.height,
+            obj.floating || false
+           ))
+            
+            break;
+
+          case 'Tiles':
+            myArray.push(new Tiles(
+            'Item'+i+j,
+            obj.icon,
+            obj.x + obj.width * j, 
+            obj.y + obj.height * i,
+            obj.width,
+            obj.height
+           ))
+            
             break;
         }
 
