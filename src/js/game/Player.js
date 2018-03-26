@@ -20,15 +20,17 @@ class Player extends Sprite {
     this.direction = 0;
 
     this.isAttached = false;
-
-    this.velocityY = 4;
-    this.velocityX = 3;
     
+    this.velocity = {
+      x: 3,
+      y: 3.5
+    }
 
     this.dx = 0;
     this.dy = this.velocityY;
 
-    this.idMove;
+
+    this.jumpSize = 90;
 
     this.jump = {
       status: false, 
@@ -41,14 +43,12 @@ class Player extends Sprite {
 
 
     this.animation = this.animation.bind(this);
-    this.move = this.move.bind(this);
     this.keyPress = this.keyPress.bind(this);
     this.keyUp = this.keyUp.bind(this);
     
     window.addEventListener('keydown', this.keyPress);
     window.addEventListener('keyup', this.keyUp);
 
-    setInterval(this.move, 10);
   }
 
   checkCollision(groundObj){
@@ -58,15 +58,10 @@ class Player extends Sprite {
         this.x + this.width > ele.x &&
         this.y < ele.y + ele.height &&
         this.height + this.y > ele.y) {
-        
-        if(this.dy > 0){
-          if(this.y < ele.y)
-          this.y = ele.y - this.height;
-        } else {
-          window.removeEventListener('keydown', this.keyPress);
-          this.dy = 6;
+        if(this.isJumping){
+          this.isJumping = false;
+          this.dx = 0;
         }
-        return;
       }
     });
   }
@@ -78,10 +73,8 @@ class Player extends Sprite {
         Math.abs(ele.x - this.x) < (this.width - 5) &&
         Math.abs((this.y + this.height) - ele.y) < 3
       ) {
-        console.log(this.y, ele.y - this.height);
+       
         temp = true;
-        
-        return;
       }
     });
 
@@ -90,23 +83,24 @@ class Player extends Sprite {
 
   keyPress(e){
     const key = e.key;
-    console.log(key);
+
+
     switch(key){
       case 'd': case 'ArrowRight':
-        this.dx = this.velocityX;
+        this.dx = this.velocity.x;
         
         break;
 
       case 'a': case 'ArrowLeft':
-        this.dx = -this.velocityX;
+        this.dx = -this.velocity.x;
         break;
       case ' ':
         if(this.attached){
           super.frameY = 1;
           super.frameX = 6;
-          this.dy = -this.velocityY;
+          this.dy = -this.velocity.y;
           this.isJumping = true;
-          this.jump.y = this.y - (60 + this.height);
+          this.jump.y = this.y - (this.jumpSize + this.height);
         }
           
         break;
@@ -138,11 +132,12 @@ class Player extends Sprite {
   }
 
 
-  move() {
+
+  animation(){
     if(!this.attached && this.isJumping == false) {
       super.frameY = 0;
       super.frameX = 6;
-      this.dy = this.velocityY;
+      this.dy = this.velocity.y;
     }
     else {
       if(!this.isJumping) this.dy = 0;
@@ -150,7 +145,7 @@ class Player extends Sprite {
         if(this.jump.y > this.y) {
           super.frameY = 0;
           super.frameX = 6;
-          this.dy = this.velocityY;
+          this.dy = this.velocity.y;
           this.isJumping = false;
         }
       }
@@ -164,11 +159,6 @@ class Player extends Sprite {
 
     this.x += this.dx;
     this.y += this.dy;
-  }
-  
-
-  animation(){
-    
 
     
     return {
