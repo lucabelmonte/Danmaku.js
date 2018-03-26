@@ -90,8 +90,13 @@ class Player extends Sprite {
         Math.abs(ele.x - this.x) < (this.width - 5) &&
         Math.abs((this.y + this.height) - ele.y) < 3
       ) {
-        
-        temp = true;
+        if(!this.attached){
+          // const music = new Audio("/audio/sfx/potpickup.ogg");
+          // music.play();
+        }
+          temp = true;
+          this.attached = temp;
+          return;
       }
     });
 
