@@ -1,11 +1,11 @@
 class Player extends Sprite {
   constructor(id, x, y, width, height){
-    
+
     const type = '0:0';
     const nx = parseXY(type)[0];
     const ny = parseXY(type)[1];
     super({
-      name: 'Player' + id, 
+      name: 'Player' + id,
       x, y, width, height,
       img: '/img/sprites/Player/p1_spritesheet.png',
       realWidth: 74, realHeight: 90,
@@ -15,12 +15,12 @@ class Player extends Sprite {
       nx, ny
     });
 
-    
+
 
     this.direction = 0;
 
     this.isAttached = false;
-    
+
     this.velocity = {
       x: 3,
       y: 3.5
@@ -33,7 +33,7 @@ class Player extends Sprite {
     this.jumpSize = 90;
 
     this.jump = {
-      status: false, 
+      status: false,
       y: this.y
     }
 
@@ -45,14 +45,14 @@ class Player extends Sprite {
     this.animation = this.animation.bind(this);
     this.keyPress = this.keyPress.bind(this);
     this.keyUp = this.keyUp.bind(this);
-    
+
     window.addEventListener('keydown', this.keyPress);
     window.addEventListener('keyup', this.keyUp);
 
   }
 
   checkCollision(groundObj){
-    
+
     groundObj.forEach((ele) => {
       if (this.x < ele.x + ele.width &&
         this.x + this.width > ele.x &&
@@ -64,9 +64,9 @@ class Player extends Sprite {
           } else {
 
           }
-        
+
           //this.dx = 0;
-        
+
       }
     })
   }
@@ -78,7 +78,7 @@ class Player extends Sprite {
         Math.abs(ele.x - this.x) < (this.width - 5) &&
         Math.abs((this.y + this.height) - ele.y) < 3
       ) {
-       
+
         temp = true;
       }
     });
@@ -91,15 +91,15 @@ class Player extends Sprite {
 
 
     switch(key){
-      case 'd': case 'ArrowRight':
+      case 'd': case'c': case 'ArrowRight':
         this.dx = this.velocity.x;
-        
+
         break;
 
-      case 'a': case 'ArrowLeft':
+      case 'a': case'z': case 'ArrowLeft':
         this.dx = -this.velocity.x;
         break;
-      case ' ':
+      case ' ': case 'w': case "ArrowUp":
         if(this.attached){
           super.frameY = 1;
           super.frameX = 6;
@@ -107,23 +107,23 @@ class Player extends Sprite {
           this.isJumping = true;
           this.jump.y = this.y - (this.jumpSize + this.height);
         }
-          
+
         break;
       case 'w':
       break;
 
     }
-   
+
   }
 
   keyUp(e){
     const key = e.key;
     switch(key){
-      case 'd': case 'ArrowRight':
+      case 'd': case'c': case 'ArrowRight':
         this.dx = 0;
         break;
 
-      case 'a': case 'ArrowLeft':
+      case 'a': case'z': case 'ArrowLeft':
         this.dx = 0;
         break;
       case ' ':
@@ -165,7 +165,7 @@ class Player extends Sprite {
     this.x += this.dx;
     this.y += this.dy;
 
-    
+
     return {
       sx: super.offSetX,
       sy: super.offSetY
