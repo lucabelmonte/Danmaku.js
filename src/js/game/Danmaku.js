@@ -29,6 +29,12 @@ class Danmaku {
 
     this.map = 'test.json';
 
+    this.defaultsParameter = {
+      block: {
+        width: 40, 
+        height: 40
+      }
+    }
 
     //BINDING METHOD
 
@@ -75,9 +81,11 @@ class Danmaku {
     // this.itemsObj.push(new Item('', "5:0", 200, this.height - 50*6, 40, 40));
     // this.itemsObj.push(new Item('', "3:1", 300, this.height - 250, 50, 70, false));
 
-    this.player = new Player('', 200, 0, 40, 55);
+    this.player = new Player('', 200, 0, 40, 50);
 
-    this.itemsObj.push(this.player);
+    this.itemsObj.push(new Heart('', 0, 0, 0, this.player));
+
+    //this.itemsObj.push(this.player);
     
 
     //console.log(this.groundObj)
@@ -99,7 +107,9 @@ class Danmaku {
       this.addLayer(ele, frame)
     });
 
-    //this.player.checkCollision(this.groundObj)
+    this.addLayer(this.player, frame);
+
+    this.player.checkCollision(this.groundObj)
     this.player.attachedToGround(this.groundObj)
     
     this.ctx.drawLayers();
@@ -161,21 +171,26 @@ class Danmaku {
 
     let myArray = [];
 
+
     for(let i = 0; i < ny; i++){
       for(let j = 0; j < nx; j++){
         switch(objectType){
           case 'Ground': 
+            const width = obj.width || this.defaultsParameter.block.width;
+            const height = obj.height || this.defaultsParameter.block.height;
             myArray.push(new Ground( 
               'Ground'+i+':'+j, 
               obj.icon, 
-              obj.x + obj.width * j, 
-              obj.y + obj.height * i,
-              obj.width,
-              obj.height
+              obj.x + width * j, 
+              obj.y + height * i,
+              width,
+              height
+              
             ));
             break;
 
           case 'Coin':
+          
             myArray.push(new Coin(
               'Coin'+i+j,
               obj.velocity,
@@ -184,6 +199,32 @@ class Danmaku {
               obj.width,
               obj.height
             ))
+            break;
+
+
+          case 'Item':
+            myArray.push(new Item(
+            'Item'+i+j,
+            obj.icon,
+            obj.x + obj.width * j, 
+            obj.y + obj.height * i,
+            obj.width,
+            obj.height,
+            obj.floating || false
+           ))
+            
+            break;
+
+          case 'Tiles':
+            myArray.push(new Tiles(
+            'Item'+i+j,
+            obj.icon,
+            obj.x + obj.width * j, 
+            obj.y + obj.height * i,
+            obj.width,
+            obj.height
+           ))
+            
             break;
         }
 
