@@ -37,6 +37,8 @@ class Danmaku {
       }
     }
 
+    this.audio;
+
     //BINDING METHOD
 
     this.update = this.update;
@@ -73,10 +75,10 @@ class Danmaku {
 
     this.loadMap();
 
-    const music = new Audio("/audio/music/Ove Melaa - Italo Unlimited.mp3");
-    music.loop = true;
-    music.volume = 0.1;
-    music.play();
+    this.audio = new Audio("/audio/music/Ove Melaa - Italo Unlimited.mp3");
+    this.audio.loop = true;
+    this.audio.volume = 0.05;
+    this.audio.play();
   
     this.Layer3.push(new Coin('', 30, 100, this.height - 50*6, 20, 20));
     this.Layer3.push(new Coin('', 20, 400, this.height - 50*6, 20, 20));
