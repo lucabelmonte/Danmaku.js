@@ -1,5 +1,6 @@
 {
-  "background": "blue_desert.png",
+  "background": "blue_grass.png",
+  
   "Layer1":
   [
     {
@@ -34,6 +35,13 @@
       "type": "Ground",
       "icon": "0:1",
       "dimension": "5:1",
+      "x": 450,
+      "y": 300
+    },
+    {
+      "type": "Ground",
+      "icon": "0:1",
+      "dimension": "5:1",
       "x": 650,
       "y": 400
     },
@@ -44,13 +52,7 @@
       "x": 450,
       "y": 200
     },
-    {
-      "type": "Ground",
-      "icon": "0:0",
-      "dimension": "1:1",
-      "x": 450,
-      "y": 300
-    },
+    
     {
       "type": "Ground",
       "icon": "0:2",
@@ -103,14 +105,52 @@
       "y": 471,
       "width": 50,
       "height": 50
+    }
+  ],
+  "Layer3": [
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 270,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
     },
     {
       "type": "Coin",
       "dimension": "1:1",
-      "x": 500,
-      "y": 300,
-      "width": 30,
-      "height": 30,
+      "x": 190,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 230,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 270,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 150,
+      "y": 490,
+      "width": 20,
+      "height": 20,
       "velocity": 15
     }
   ]

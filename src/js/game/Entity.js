@@ -27,6 +27,8 @@ class Entity{
   click(){
     // overloading
     //alert(this.solid)
+    const music = new Audio("/audio/sfx/click.ogg");
+     music.play();
   }
 
   checkCollision(){

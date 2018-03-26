@@ -96,6 +96,8 @@ class Item extends Sprite {
   }
 }
 
+
+
 class Tiles extends Sprite {
   constructor(id, type, x, y, width, height){
     const nx = parseXY(type)[0];

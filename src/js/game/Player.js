@@ -22,8 +22,8 @@ class Player extends Sprite {
     this.isAttached = false;
 
     this.velocity = {
-      x: 3,
-      y: 3.5
+      x: 4,
+      y: 4.5
     }
 
     this.dx = 0;
@@ -51,24 +51,34 @@ class Player extends Sprite {
 
   }
 
-  checkCollision(groundObj){
-
-    groundObj.forEach((ele) => {
+  checkCollision(Layer){
+    
+    Layer.forEach((ele) => {
       if (this.x < ele.x + ele.width &&
         this.x + this.width > ele.x &&
         this.y < ele.y + ele.height &&
         this.height + this.y > ele.y) {
-          if(Math.abs((ele.y + ele.height) - this.y) <= 40 && Math.abs((ele.x - this.x) <  this.width)){
-            if(this.isJumping)
-              this.isJumping = false;
+          if(ele.solid){
+            if(Math.abs((ele.y + ele.height) - this.y) <= 40 && Math.abs((ele.x - this.x) <  this.width)){
+              if(this.isJumping)
+                this.isJumping = false;
+            } else {
+  
+            }
           } else {
+            const music = new Audio("/audio/sfx/gem.ogg");
+            music.play();
 
+            //console.log(Layer.splice(Layer.indexOf(ele)), 1)
+            return Layer.splice(Layer.indexOf(ele), 1);
           }
-
+          
+        
           //this.dx = 0;
 
       }
     })
+    return Layer;
   }
 
   attachedToGround(Layer1){

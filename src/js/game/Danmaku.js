@@ -25,7 +25,8 @@ class Danmaku {
 
 
     this.groundObj = []; // level 1
-    this.itemsObj  = []; // level 2
+    this.Layer2 = [];
+    this.Layer3 = []; // level 2
 
     this.map = 'test.json';
 
@@ -72,9 +73,13 @@ class Danmaku {
 
     this.loadMap();
 
+    const music = new Audio("/audio/music/Ove Melaa - Italo Unlimited.mp3");
+    music.loop = true;
+    music.volume = 0.1;
+    music.play();
   
-    this.itemsObj.push(new Coin('', 30, 100, this.height - 50*6, 20, 20));
-    this.itemsObj.push(new Coin('', 20, 400, this.height - 50*6, 20, 20));
+    this.Layer3.push(new Coin('', 30, 100, this.height - 50*6, 20, 20));
+    this.Layer3.push(new Coin('', 20, 400, this.height - 50*6, 20, 20));
     
 
 
@@ -83,7 +88,7 @@ class Danmaku {
 
     this.player = new Player('', 200, 0, 40, 50);
 
-    this.itemsObj.push(new Heart('', 0, 0, 0, this.player));
+    this.Layer3.push(new Heart('', 0, 0, 0, this.player));
 
     //this.itemsObj.push(this.player);
     
@@ -103,13 +108,18 @@ class Danmaku {
       this.addLayer(ele, frame)
     });
 
-    this.itemsObj.forEach((ele) => {
+    this.Layer2.forEach((ele) => {
+      this.addLayer(ele, frame)
+    });
+
+    this.Layer3.forEach((ele) => {
       this.addLayer(ele, frame)
     });
 
     this.addLayer(this.player, frame);
 
     this.player.checkCollision(this.groundObj)
+    this.Layer3 = this.player.checkCollision(this.Layer3)
     this.player.attachedToGround(this.groundObj)
     
     this.ctx.drawLayers();
@@ -152,12 +162,17 @@ class Danmaku {
       this.backGround = data.background;
       const layer1 = data.Layer1;
       const layer2 = data.Layer2;
+      const layer3 = data.Layer3;
       layer1.forEach((obj) => {
         this.groundObj = this.groundObj.concat(this.createElement(obj));
       });
 
       layer2.forEach((obj) => {
-        this.itemsObj = this.itemsObj.concat(this.createElement(obj));
+        this.Layer2 = this.Layer2.concat(this.createElement(obj));
+      });
+
+      layer3.forEach((obj) => {
+        this.Layer3 = this.Layer3.concat(this.createElement(obj));
       });
     });
   }
