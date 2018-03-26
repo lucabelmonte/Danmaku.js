@@ -16,6 +16,8 @@ class Danmaku {
       fromCenter: false,
     });
 
+    this.FPS = 100;
+
 
     // MAIN PARAMETRI
 
@@ -47,8 +49,8 @@ class Danmaku {
     let frame = 0;
 
     setInterval(() => {
-      this.update(frame++)}
-    , 1000/60)
+      this.update(frame++, frameStart)}
+    , 1000/this.FPS)
   }
 
   preload() {
@@ -81,8 +83,9 @@ class Danmaku {
     //console.log(this.groundObj)
   }
 
-  update(frameStart) {
-    const frame = frameStart; //Math.floor((Date.now() - frameStart) /
+  // MAIN METHOD
+
+  update(frame) {
     this.ctx.removeLayers();
     this.loadBackGround();
     

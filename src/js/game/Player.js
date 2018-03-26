@@ -21,9 +21,14 @@ class Player extends Sprite {
 
     this.isAttached = false;
 
+    this.velocityY = 4;
+    this.velocityX = 3;
+    
 
     this.dx = 0;
-    this.dy = 6;
+    this.dy = this.velocityY;
+
+    this.idMove;
 
     this.jump = {
       status: false, 
@@ -36,12 +41,14 @@ class Player extends Sprite {
 
 
     this.animation = this.animation.bind(this);
-
+    this.move = this.move.bind(this);
     this.keyPress = this.keyPress.bind(this);
     this.keyUp = this.keyUp.bind(this);
-
+    
     window.addEventListener('keydown', this.keyPress);
     window.addEventListener('keyup', this.keyUp);
+
+    setInterval(this.move, 10);
   }
 
   checkCollision(groundObj){
@@ -69,7 +76,7 @@ class Player extends Sprite {
     Layer1.forEach(ele => {
       if(ele.solid &&
         Math.abs(ele.x - this.x) < (this.width - 5) &&
-        Math.abs((this.y + this.height) - ele.y) < 4
+        Math.abs((this.y + this.height) - ele.y) < 3
       ) {
         console.log(this.y, ele.y - this.height);
         temp = true;
@@ -86,18 +93,18 @@ class Player extends Sprite {
     console.log(key);
     switch(key){
       case 'd': case 'ArrowRight':
-        this.dx = 5;
+        this.dx = this.velocityX;
         
         break;
 
       case 'a': case 'ArrowLeft':
-        this.dx = -5;
+        this.dx = -this.velocityX;
         break;
       case ' ':
         if(this.attached){
           super.frameY = 1;
           super.frameX = 6;
-          this.dy = -6;
+          this.dy = -this.velocityY;
           this.isJumping = true;
           this.jump.y = this.y - (60 + this.height);
         }
@@ -130,15 +137,12 @@ class Player extends Sprite {
     }
   }
 
-  jump() {
 
-  } 
-
-  animation(){
+  move() {
     if(!this.attached && this.isJumping == false) {
       super.frameY = 0;
       super.frameX = 6;
-      this.dy = 7;
+      this.dy = this.velocityY;
     }
     else {
       if(!this.isJumping) this.dy = 0;
@@ -146,7 +150,7 @@ class Player extends Sprite {
         if(this.jump.y > this.y) {
           super.frameY = 0;
           super.frameX = 6;
-          this.dy = 7;
+          this.dy = this.velocityY;
           this.isJumping = false;
         }
       }
@@ -160,6 +164,11 @@ class Player extends Sprite {
 
     this.x += this.dx;
     this.y += this.dy;
+  }
+  
+
+  animation(){
+    
 
     
     return {
