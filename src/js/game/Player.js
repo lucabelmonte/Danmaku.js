@@ -41,6 +41,7 @@ class Player extends Sprite {
       jump: "6:2"
     }
 
+   
 
     this.animation = this.animation.bind(this);
     this.keyPress = this.keyPress.bind(this);
@@ -66,7 +67,8 @@ class Player extends Sprite {
   
             }
           } else {
-            const music = new Audio("/audio/sfx/gem.ogg");
+            const music = new Audio("/audio/sfx/Mario-coin-sound.mp3");
+            music.volume = 0.2;
             music.play();
 
             //console.log(Layer.splice(Layer.indexOf(ele)), 1)
@@ -88,7 +90,7 @@ class Player extends Sprite {
         Math.abs(ele.x - this.x) < (this.width - 5) &&
         Math.abs((this.y + this.height) - ele.y) < 3
       ) {
-
+        
         temp = true;
       }
     });
