@@ -8,7 +8,13 @@ const parseXY = (type) => { // x:y
   ];
 }
 
+
+
+
 $(() => {
   const x = new Danmaku('app', 1000, 600);
   x.play();
+  
+  
+  
 })

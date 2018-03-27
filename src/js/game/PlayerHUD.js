@@ -20,11 +20,20 @@ class Heart extends PLayerHUD {
     this.player = player;
 
     this.playerPOS = this.playerPOS.bind(this);
-    setInterval(this.playerPOS, 20);
+    //setInterval(this.playerPOS, 20);
   }
 
   playerPOS() {
     this.y = this.player.y - 40;
     this.x = this.player.x + this.player.width / 5;
+  }
+
+  animation(actualFrame){
+    this.playerPOS();
+
+    return {
+      sx: this.offSetX,
+      sy: this.offSetY
+    }
   }
 }

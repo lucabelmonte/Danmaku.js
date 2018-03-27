@@ -47,7 +47,7 @@ class Player extends Sprite {
     this.keyPress = this.keyPress.bind(this);
     this.keyUp = this.keyUp.bind(this);
 
-    window.addEventListener('keydown', this.keyPress);
+    window.addEventListener('keypress', this.keyPress);
     window.addEventListener('keyup', this.keyUp);
 
   }

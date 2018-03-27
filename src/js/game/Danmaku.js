@@ -17,6 +17,21 @@ class Danmaku {
     });
 
     this.FPS = 100;
+    this.frame = 0;
+    this.start;
+
+    window.requestAnimFrame = (function(callback) {
+ 
+      return window.requestAnimationFrame ||
+             window.webkitRequestAnimationFrame ||
+             window.mozRequestAnimationFrame ||
+             window.oRequestAnimationFrame ||
+             window.msRequestAnimationFrame ||
+              
+             function(callback) {
+                window.setTimeout(callback, 1000 / this.FPS);
+             }; 
+    })();
 
 
     // MAIN PARAMETRI
@@ -41,9 +56,9 @@ class Danmaku {
 
     //BINDING METHOD
 
-    this.update = this.update;
+    this.update = this.update.bind(this);
     this.preload = this.preload.bind(this);
-    this.play = this.play;
+    this.play = this.play.bind(this);
   }
 
   // MAIN METHOD:
@@ -56,10 +71,13 @@ class Danmaku {
     this.preload();
 
     let frame = 0;
+    this.start = Date.now();
 
-    setInterval(() => {
-      this.update(frame++, frameStart)}
-    , 1000/this.FPS)
+    this.update(this.frame);
+
+    // setInterval(() => {
+    //   this.update(frame++, frameStart)}
+    // , 1000/this.FPS)
   }
 
   preload() {
@@ -125,6 +143,19 @@ class Danmaku {
     this.player.attachedToGround(this.groundObj)
     
     this.ctx.drawLayers();
+
+
+    // TEST
+    
+    window.requestAnimFrame(() => {
+      if(frame % this.FPS == 0){
+        const fps = Date.now() - this.start;
+        console.log('FPS: ', fps);
+        this.start = Date.now();
+      }
+      this.frame++;
+      this.update(this.frame);
+    });
   }
 
 
