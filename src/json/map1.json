@@ -1,0 +1,83 @@
+{
+	"background": "colored_shroom.png",
+	
+	"Layer1":
+	[
+		{
+		  "type": "Ground",
+		  "icon": "0:1",
+		  "dimension": "25:1",
+		  "x": 0,
+		  "y": 550
+		},
+		{
+		  "type": "Ground",
+		  "icon": "0:1",
+		  "dimension": "10:1",
+		  "x": 400,
+		  "y": 450
+		},
+		{
+		  "type": "Ground",
+		  "icon": "0:1",
+		  "dimension": "5:1",
+		  "x": 550,
+		  "y": 350
+		}
+		
+	],
+	"Layer2":
+  [
+  ],
+  "Layer3": [
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 270,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 190,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 230,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 270,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 150,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    }
+  ]
+	
+	
+	
+
+}

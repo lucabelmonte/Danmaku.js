@@ -16,7 +16,7 @@ class Danmaku {
       fromCenter: false,
     });
 
-    this.FPS = 100;
+    this.FPS = 60;
     this.frame = 0;
     this.start;
 
@@ -42,9 +42,14 @@ class Danmaku {
     this.groundObj = []; // level 1
     this.Layer2 = [];
     this.Layer3 = []; // level 2
-
-    this.map = 'test.json';
-
+	
+	
+	this.indexMap = 0;
+	this.maxMap = 10;
+	
+    //this.map = 'Test2.json';
+	
+	
     this.defaultsParameter = {
       block: {
         width: 40, 
@@ -59,11 +64,24 @@ class Danmaku {
     this.update = this.update.bind(this);
     this.preload = this.preload.bind(this);
     this.play = this.play.bind(this);
+	
+	this.setMap = this.setMap.bind(this);
   }
 
   // MAIN METHOD:
   // preload: init the play
 
+  get map(){
+	return "map" + this.indexMap + ".json";
+  }
+  
+  setMap(index){
+	  console.log(1);
+	 if(index < this.maxMap)
+		this.indexMap = index; 
+  }
+  
+  
   
 
   play() {
@@ -81,16 +99,6 @@ class Danmaku {
   }
 
   preload() {
-    this.ctx.addLayer({
-      type: 'image',
-      x: 0,
-      y: 0,
-      source: '\src\img\Backgrounds/blue_desert.png',
-      width:  this.width,
-      height: this.height,
-      
-    });
-
     this.loadMap();
 
     this.audio = new Audio("/audio/music/Ove Melaa - Italo Unlimited.mp3");
@@ -101,19 +109,13 @@ class Danmaku {
     this.Layer3.push(new Coin('', 30, 100, this.height - 50*6, 20, 20));
     this.Layer3.push(new Coin('', 20, 400, this.height - 50*6, 20, 20));
     
-
-
-    // this.itemsObj.push(new Item('', "5:0", 200, this.height - 50*6, 40, 40));
-    // this.itemsObj.push(new Item('', "3:1", 300, this.height - 250, 50, 70, false));
+	
+	this.Layer3.push(new Door('', 20, 400, 50, 100));
 
     this.player = new Player('', 200, 0, 40, 50);
 
     this.Layer3.push(new Heart('', 0, 0, 0, this.player));
 
-    //this.itemsObj.push(this.player);
-    
-
-    //console.log(this.groundObj)
   }
 
   // MAIN METHOD
@@ -139,7 +141,8 @@ class Danmaku {
     this.addLayer(this.player, frame);
 
     this.player.checkCollision(this.groundObj)
-    this.Layer3 = this.player.checkCollision(this.Layer3)
+    this.Layer3 = this.player.checkCollision(this.Layer3, this.setMap)
+	
     this.player.attachedToGround(this.groundObj)
     
     this.ctx.drawLayers();
@@ -150,7 +153,6 @@ class Danmaku {
     window.requestAnimFrame(() => {
       if(frame % this.FPS == 0){
         const fps = Date.now() - this.start;
-        console.log('FPS: ', fps);
         this.start = Date.now();
       }
       this.frame++;

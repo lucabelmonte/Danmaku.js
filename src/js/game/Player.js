@@ -52,7 +52,7 @@ class Player extends Sprite {
 
   }
 
-  checkCollision(Layer){
+  checkCollision(Layer, method){
     
     Layer.forEach((ele) => {
       if (this.x < ele.x + ele.width &&
@@ -67,12 +67,16 @@ class Player extends Sprite {
   
             }
           } else {
-            const music = new Audio("/audio/sfx/Mario-coin-sound.mp3");
-            music.volume = 0.2;
-            music.play();
-
-            //console.log(Layer.splice(Layer.indexOf(ele)), 1)
-            return Layer.splice(Layer.indexOf(ele), 1);
+			if(ele instanceof Coin){
+			  const music = new Audio("/audio/sfx/Mario-coin-sound.mp3");
+              music.volume = 0.2;
+              music.play();
+              return Layer.splice(Layer.indexOf(ele), 1);
+			}
+			if(ele instanceof Door){
+				method(1);
+			}
+            
           }
           
         
@@ -156,6 +160,11 @@ class Player extends Sprite {
 
 
   animation(){
+	if(this.dx > 0 && this.x + this.width + 1 > SCREEN_W || this.dx < 0 && this.x - 1 < 0)
+		this.dx = 0;
+	
+	  
+	  
     if(!this.attached && this.isJumping == false) {
       super.frameY = 0;
       super.frameX = 6;

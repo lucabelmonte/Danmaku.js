@@ -1,0 +1,157 @@
+{
+  "background": "blue_grass.png",
+  
+  "Layer1":
+  [
+    {
+      "type": "Ground",
+      "icon": "0:1",
+      "dimension": "30:1",
+      "x": 0,
+      "y": 520
+    },
+    {
+      "type": "Ground",
+      "icon": "1:0",
+      "dimension": "30:1",
+      "x": 0,
+      "y": 560
+    },
+    {
+      "type": "Ground",
+      "icon": "0:2",
+      "dimension": "1:1",
+      "x": 210,
+      "y": 200
+    },
+    {
+      "type": "Ground",
+      "icon": "0:1",
+      "dimension": "5:1",
+      "x": 250,
+      "y": 200
+    },
+    {
+      "type": "Ground",
+      "icon": "0:1",
+      "dimension": "5:1",
+      "x": 450,
+      "y": 300
+    },
+    {
+      "type": "Ground",
+      "icon": "0:1",
+      "dimension": "5:1",
+      "x": 650,
+      "y": 400
+    },
+    {
+      "type": "Ground",
+      "icon": "0:0",
+      "dimension": "1:1",
+      "x": 450,
+      "y": 200
+    },
+    
+    {
+      "type": "Ground",
+      "icon": "0:2",
+      "dimension": "1:1",
+      "x": 500,
+      "y": 100
+    },
+    {
+      "type": "Ground",
+      "icon": "0:1",
+      "dimension": "3:1",
+      "x": 530,
+      "y": 100
+    },
+    {
+      "type": "Ground",
+      "icon": "0:0",
+      "dimension": "1:1",
+      "x": 650,
+      "y": 100
+    }
+    
+  ],
+  "Layer2":
+  [
+    
+    {
+      "type": "Tiles",
+      "dimension": "1:1",
+      "icon": "3:14",
+      "x": 200,
+      "y": 471,
+      "width": 50,
+      "height": 50
+    },
+    {
+      "type": "Tiles",
+      "dimension": "1:1",
+      "icon": "3:14",
+      "x": 700,
+      "y": 471,
+      "width": 50,
+      "height": 50
+    },
+    {
+      "type": "Tiles",
+      "dimension": "1:1",
+      "icon": "2:1",
+      "x": 100,
+      "y": 471,
+      "width": 50,
+      "height": 50
+    }
+  ],
+  "Layer3": [
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 270,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 190,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 230,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 270,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    },
+    {
+      "type": "Coin",
+      "dimension": "1:1",
+      "x": 150,
+      "y": 490,
+      "width": 20,
+      "height": 20,
+      "velocity": 15
+    }
+  ]
+}

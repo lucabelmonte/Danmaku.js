@@ -32,7 +32,6 @@ class Sprite extends Entity {
 
   animation(actualFrame){
     if(this.frameDuration != 0){
-      console.log()
       if(actualFrame % this.frameDuration == 0){
         if(this.frameX == (this.numberFrame - 1)) this.frameX = 0;
         else this.frameX++;

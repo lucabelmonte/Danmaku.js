@@ -115,3 +115,23 @@ class Tiles extends Sprite {
     });
   }
 }
+
+class Door extends Sprite {
+  constructor(id, x, y, width, height){
+	const type = "3:5";
+	
+    const nx = parseXY(type)[0];
+    const ny = parseXY(type)[1];
+
+    super({
+      name: 'Door' + id, 
+      x, y, width, height,
+      img: '/img/sprites/spritesheet_tiles.png',
+      realWidth: 128, realHeight: 256,
+
+
+      offSetX: 128, offSetY: 256,
+      nx, ny
+    });
+  }
+}

@@ -12,9 +12,8 @@ const parseXY = (type) => { // x:y
 
 
 $(() => {
-  const x = new Danmaku('app', 1000, 600);
+  SCREEN_W = 	1000;
+  SCREEN_H =     600;
+  const x = new Danmaku('app', SCREEN_W, SCREEN_H);
   x.play();
-  
-  
-  
 })
