@@ -30,7 +30,9 @@ class Player extends Sprite {
     this.dy = this.velocityY;
 
 
-    this.jumpSize = 90;
+    this.jumpSize = 68;
+	
+	
 
     this.jump = {
       status: false,
@@ -67,14 +69,20 @@ class Player extends Sprite {
   
             }
           } else {
-			if(ele instanceof Coin){
-			  const music = new Audio("/audio/sfx/Mario-coin-sound.mp3");
-              music.volume = 0.2;
+			if(ele instanceof Coin || ele instanceof Item){
+			  let music; 
+			  if(ele instanceof Coin)
+				music = new Audio("/audio/sfx/Mario-coin-sound.mp3");
+              
+			  if(ele instanceof Item)
+			  	music = new Audio("/audio/sfx/gem.ogg");
+
+			  music.volume = 0.2;
               music.play();
               return Layer.splice(Layer.indexOf(ele), 1);
 			}
 			if(ele instanceof Door){
-				method(1);
+				console.log(1);
 			}
             
           }
@@ -163,8 +171,7 @@ class Player extends Sprite {
 	if(this.dx > 0 && this.x + this.width + 1 > SCREEN_W || this.dx < 0 && this.x - 1 < 0)
 		this.dx = 0;
 	
-	  
-	  
+	
     if(!this.attached && this.isJumping == false) {
       super.frameY = 0;
       super.frameX = 6;

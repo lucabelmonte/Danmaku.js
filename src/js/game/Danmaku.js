@@ -106,11 +106,8 @@ class Danmaku {
     this.audio.volume = 0.05;
     this.audio.play();
   
-    this.Layer3.push(new Coin('', 30, 100, this.height - 50*6, 20, 20));
-    this.Layer3.push(new Coin('', 20, 400, this.height - 50*6, 20, 20));
-    
 	
-	this.Layer3.push(new Door('', 20, 400, 50, 100));
+	//this.Layer3.push(new Door('', 20, 420, 50, 100));
 
     this.player = new Player('', 200, 0, 40, 50);
 
@@ -198,6 +195,9 @@ class Danmaku {
       const layer1 = data.Layer1;
       const layer2 = data.Layer2;
       const layer3 = data.Layer3;
+	  
+	console.log(layer3);
+	  
       layer1.forEach((obj) => {
         this.groundObj = this.groundObj.concat(this.createElement(obj));
       });
@@ -207,6 +207,7 @@ class Danmaku {
       });
 
       layer3.forEach((obj) => {
+		  
         this.Layer3 = this.Layer3.concat(this.createElement(obj));
       });
     });
@@ -214,12 +215,40 @@ class Danmaku {
 
   createElement(obj){
     const objectType = obj.type;
-
+	console.log(objectType)
     const dim = obj.dimension;
     const nx = parseXY(dim)[0];
     const ny = parseXY(dim)[1];
 
     let myArray = [];
+	
+	if(objectType == "Item"){
+            myArray.push(new Item(
+            'Item',
+            obj.icon,
+            obj.x, 
+            obj.y,
+            obj.width,
+            obj.height,
+            obj.floating || false
+           ))
+		   
+		 return myArray;
+	}
+	
+	if(objectType == "Door"){
+            myArray.push(new Item(
+            'Item',
+            obj.icon,
+            obj.x, 
+            obj.y,
+            obj.width,
+            obj.height,
+            obj.floating || false
+           ))
+		   
+		 return myArray;
+	}
 
 
     for(let i = 0; i < ny; i++){
@@ -238,6 +267,18 @@ class Danmaku {
               
             ));
             break;
+			
+			case 'Door':
+          
+            myArray.push(new Door(
+              'Door'+i+j,
+              obj.x + obj.width * j, 
+              obj.y + obj.height * i,
+              obj.width,
+              obj.height
+            ))
+            break;
+			
 
           case 'Coin':
           
@@ -253,6 +294,7 @@ class Danmaku {
 
 
           case 'Item':
+		  console.log(21);
             myArray.push(new Item(
             'Item'+i+j,
             obj.icon,
